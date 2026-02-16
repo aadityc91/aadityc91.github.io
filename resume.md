@@ -1,11 +1,7 @@
 <h1 class="title">Resume</h1>
 
 <div style="margin-bottom: 2rem;">
-    <p>
-        I have experience in full-stack development, browser extensions, and AI integration. I enjoy building tools that solve real problems while respecting user privacy.
-    </p>
-    
-    <div style="margin-top: 1.5rem;">
+    <div style="margin-top: 1rem;">
         <a href="assets/resume.pdf" class="cactus-link" download style="font-weight: bold; font-size: 1.1rem; display: inline-flex; align-items: center; gap: 0.5rem;">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             Download PDF Resume
@@ -13,19 +9,32 @@
     </div>
 </div>
 
-<h2>Skills</h2>
+<h2>Technical Expertise</h2>
 
-**Languages:** JavaScript (ES6+), Python, HTML5, CSS3  
-**Technologies:** WebExtensions API, React, Node.js, Git, Docker  
-**Focus:** Privacy-First Design, AI Agents, UI/UX  
+**Search & Information Retrieval:** OpenSearch, Elasticsearch, hybrid search (BM25 + dense vector), semantic retrieval, NER-based query understanding, relevance tuning
+
+**AI/ML & RAG:** Retrieval-Augmented Generation pipelines, embeddings-based retrieval, LLM integration, prompt engineering, semantic backfill, intelligent query routing
+
+**Distributed Systems:** Real-time event-driven architectures (Kinesis, SQS, Lambda, Step Functions), zero-downtime migrations, shadow testing frameworks, high-availability design
+
+**Data & Infrastructure:** DynamoDB (GSI strategies, transaction handling, billions of records), streaming pipelines, sub-second latency optimization, monitoring & operational excellence
+
+**Languages & Tools:** Java, Python, JavaScript, AWS (DynamoDB, Kinesis, Lambda, SQS, OpenSearch), Git, Docker
 
 <h2>Experience</h2>
 
-### Software Developer
-*Building impactful tools for the web.*
-- Developed **TabTime** and **Webtime Tracker**, gaining users across Chrome and Firefox.
-- Implemented complex features like multi-timers and hydration tracking using vanilla web technologies.
-- Automating daily workflows with custom Python AI agents.
+### Senior Software Engineer — Amazon
+*12+ years building enterprise-scale search and distributed systems*
 
----
-*Full resume available via download above.*
+- Led the evolution of search platforms from lexical to hybrid architectures combining BM25 with dense vector retrieval, serving tens of millions of users
+- Designed and implemented RAG pipelines connecting search infrastructure with large language models for context-aware information retrieval
+- Architected real-time event-driven data pipelines processing millions of events daily with strict consistency guarantees
+- Built Named Entity Recognition systems and prompt engineering pipelines for query understanding, significantly improving search relevance
+- Led multiple zero-downtime data migration projects across billions of records with comprehensive shadow testing frameworks
+- Mentored engineers through complex system re-architectures, led cross-functional design reviews, and established operational best practices
+
+<h2>Education</h2>
+
+**M.S. in Computer Science and Engineering** — The Ohio State University
+
+**B.E. in Electronics and Communication** — Netaji Subhas Institute of Technology, New Delhi
