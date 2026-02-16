@@ -7,7 +7,7 @@
   </div>
   <div style="margin-top:0.5rem;">
     <span style="background:var(--color-accent-2); color:var(--color-global-bg); padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">Chrome Extension</span>
-    <span style="background:transparent; color:var(--color-global-text); padding:2px 8px; border-radius:4px; font-size:0.75rem; border:1px solid var(--color-border);">JavaScript</span>
+    <span style="background:transparent; color:#ffd400; padding:2px 8px; border-radius:4px; font-size:0.75rem; border:1px solid #ffd400;">JavaScript</span>
   </div>
   <p style="margin-top:0.75rem;">
     A privacy-first productivity dashboard for Chrome. Combines time tracking, multi-timers, rich-text notes, daily scheduling, and stock monitoring—all with local-only data storage.
@@ -24,7 +24,7 @@
   </div>
   <div style="margin-top:0.5rem;">
     <span style="background:var(--color-accent); color:var(--color-global-bg); padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">Firefox Add-on</span>
-    <span style="background:transparent; color:var(--color-global-text); padding:2px 8px; border-radius:4px; font-size:0.75rem; border:1px solid var(--color-border);">JavaScript</span>
+    <span style="background:transparent; color:#ffd400; padding:2px 8px; border-radius:4px; font-size:0.75rem; border:1px solid #ffd400;">JavaScript</span>
   </div>
   <p style="margin-top:0.75rem;">
     The original Firefox version of the productivity suite. Features hydration reminders, calendar heatmaps, and local-only data storage.
