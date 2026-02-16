@@ -12,9 +12,7 @@
   <p style="margin-top:0.75rem;">
     A privacy-first productivity dashboard for Chrome. Combines time tracking, multi-timers, rich-text notes, daily scheduling, and stock monitoring—all with local-only data storage.
   </p>
-  <div style="margin-top:0.5rem;">
-    <a href="https://github.com/aadityc91/tabtime-chrome" class="cactus-link" style="font-size:0.9rem;">View Code</a>
-  </div>
+
 </div>
 
 <div class="project-entry" style="margin-bottom: 2rem;">
@@ -29,7 +27,5 @@
   <p style="margin-top:0.75rem;">
     The original Firefox version of the productivity suite. Features hydration reminders, calendar heatmaps, and local-only data storage.
   </p>
-  <div style="margin-top:0.5rem;">
-    <a href="https://github.com/aadityc91/webtime-tracker" class="cactus-link" style="font-size:0.9rem;">View Code</a>
-  </div>
+
 </div>
