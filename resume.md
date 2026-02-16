@@ -15,7 +15,7 @@
 
 **Distributed Systems:** Real-time event-driven architectures (Kinesis, SQS, Lambda, Step Functions), zero-downtime migrations, shadow testing frameworks, high-availability design
 
-**Data & Infrastructure:** DynamoDB (GSI strategies, transaction handling, billions of records), streaming pipelines, sub-second latency optimization, monitoring & operational excellence
+**Data & Infrastructure:** DynamoDB (GSI strategies, transaction handling, hundreds of billions of records), streaming pipelines, sub-second latency optimization, monitoring & operational excellence
 
 **Languages & Tools:** Java, Python, JavaScript, AWS (OpenSearch, DynamoDB, Kinesis, Lambda, SQS, Step Functions, S3, CloudWatch, IAM), Git, Docker
 
@@ -28,7 +28,7 @@
 - Designed and implemented RAG pipelines connecting search infrastructure with large language models for context-aware information retrieval
 - Architected real-time event-driven data pipelines processing millions of events daily with strict consistency guarantees
 - Built Named Entity Recognition systems and prompt engineering pipelines for query understanding, significantly improving search relevance
-- Led multiple zero-downtime data migration projects across billions of records with comprehensive shadow testing frameworks
+- Led multiple zero-downtime data migration projects across hundreds of billions of records with comprehensive shadow testing frameworks
 - Mentored engineers through complex system re-architectures, led cross-functional design reviews, and established operational best practices
 
 <h2>Education</h2>
