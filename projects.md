@@ -35,17 +35,3 @@
   </div>
 </div>
 
-<div class="project-entry" style="margin-bottom: 2rem;">
-  <div style="display:flex; justify-content:space-between; align-items:baseline;">
-    <h2 style="margin:0;">Morning Intelligence Agent</h2>
-    <span style="color:var(--color-text-offset); font-size:0.9rem;">In Progress</span>
-  </div>
-  <div style="margin-top:0.5rem;">
-    <span style="background:#cba6f7; color:var(--bg-body); padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">AI Agent</span>
-    <span style="background:var(--bg-quote); color:var(--color-text); padding:2px 8px; border-radius:4px; font-size:0.75rem; border:1px solid var(--border-color);">Python</span>
-    <span style="background:var(--bg-quote); color:var(--color-text); padding:2px 8px; border-radius:4px; font-size:0.75rem; border:1px solid var(--border-color);">LLMs</span>
-  </div>
-  <p style="margin-top:0.75rem;">
-    An autonomous agent that scrapes news, Reddit, and market data to generate a personalized daily intelligence briefing. Uses LLMs to summarize diverse viewpoints and identify trends.
-  </p>
-</div>
