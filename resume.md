@@ -15,7 +15,7 @@
 
 **Distributed Systems:** Real-time event-driven architectures (Kinesis, SQS, Lambda, Step Functions), zero-downtime migrations, shadow testing frameworks, high-availability design
 
-**Data & Infrastructure:** DynamoDB (GSI strategies, transaction handling, hundreds of billions of records), streaming pipelines, sub-second latency optimization, monitoring & operational excellence
+**Data & Infrastructure:** DynamoDB (GSI strategies, transaction handling), streaming pipelines, sub-second latency optimization, monitoring & operational excellence
 
 **Languages & Tools:** Java, Python, JavaScript, AWS (OpenSearch, DynamoDB, Kinesis, Lambda, SQS, Step Functions, S3, CloudWatch, IAM), Git, Docker
 
