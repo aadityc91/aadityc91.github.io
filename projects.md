@@ -2,7 +2,7 @@
 
 <div class="project-entry" style="margin-bottom: 2rem;">
   <div style="display:flex; justify-content:space-between; align-items:baseline;">
-    <h2 style="margin:0;"><a href="https://github.com/aadityc91/tabtime-chrome" target="_blank" class="cactus-link">TabTime</a></h2>
+    <h2 style="margin:0;"><a href="https://chromewebstore.google.com/detail/jjbphlheepacgogeockeepfmecfgfncd?utm_source=item-share-cb" target="_blank" class="cactus-link">TabTime</a></h2>
     <span style="color:var(--color-text-offset); font-size:0.9rem;">2026</span>
   </div>
   <div style="margin-top:0.5rem;">
@@ -19,7 +19,7 @@
 
 <div class="project-entry" style="margin-bottom: 2rem;">
   <div style="display:flex; justify-content:space-between; align-items:baseline;">
-    <h2 style="margin:0;"><a href="https://github.com/aadityc91/webtime-tracker" target="_blank" class="cactus-link">Webtime Tracker</a></h2>
+    <h2 style="margin:0;"><a href="https://addons.mozilla.org/en-US/firefox/addon/tabtime/" target="_blank" class="cactus-link">Webtime Tracker</a></h2>
     <span style="color:var(--color-text-offset); font-size:0.9rem;">2025</span>
   </div>
   <div style="margin-top:0.5rem;">
