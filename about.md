@@ -18,10 +18,4 @@
   </div>
 </div>
 
-I am a software developer passionate about building privacy-first tools and intelligent agents. I specialize in browser extension development and AI integration.
-
-I built **[TabTime](https://github.com/aadityc91/tabtime-chrome)**, a comprehensive productivity extension for Chrome, and **[Webtime Tracker](https://github.com/aadityc91/webtime-tracker)** for Firefox. These tools help users reclaim their time without sacrificing their data privacy.
-
-Currently, I'm working on expanding my Morning Intelligence Agent, an automated system that curates personalized daily briefings from around the web.
-
-When I'm not coding, you can find me exploring new tech stacks or optimizing my own workflow.
+I'm a Senior Software Engineer with over 12 years of experience in search and information retrieval. I've built search platforms serving tens of millions of users—evolving them from traditional lexical approaches to modern hybrid architectures that combine keyword matching with semantic retrieval and LLM-powered understanding. Making search work at that scale means solving hard distributed systems problems: real-time pipelines processing millions of events daily, zero-downtime migrations across billions of records, and infrastructure tuned for sub-second latency. Outside of work, I research novel retrieval pruning techniques aimed at making RAG systems faster and more cost-effective.
