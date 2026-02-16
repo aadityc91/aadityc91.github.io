@@ -19,7 +19,7 @@
 
 **Data & Infrastructure:** DynamoDB (GSI strategies, transaction handling, billions of records), streaming pipelines, sub-second latency optimization, monitoring & operational excellence
 
-**Languages & Tools:** Java, Python, JavaScript, AWS (DynamoDB, Kinesis, Lambda, SQS, OpenSearch), Git, Docker
+**Languages & Tools:** Java, Python, JavaScript, AWS (OpenSearch, DynamoDB, Kinesis, Lambda, SQS, Step Functions, S3, CloudWatch, IAM), Git, Docker
 
 <h2>Experience</h2>
 
@@ -35,6 +35,6 @@
 
 <h2>Education</h2>
 
-**M.S. in Computer Science and Engineering** — The Ohio State University
+**M.S. in Computer Science & Engineering** — The Ohio State University
 
 **B.E. in Electronics and Communication** — Netaji Subhas Institute of Technology, New Delhi
