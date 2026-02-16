@@ -1,4 +1,4 @@
-<h1 class="title">Selected Projects</h1>
+<h1 class="title">Projects</h1>
 
 <div class="project-entry" style="margin-bottom: 2rem;">
   <div style="display:flex; justify-content:space-between; align-items:baseline;">
