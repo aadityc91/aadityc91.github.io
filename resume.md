@@ -11,9 +11,7 @@
 
 <h2>Technical Expertise</h2>
 
-**Search & Information Retrieval:** OpenSearch, Elasticsearch, hybrid search (BM25 + dense vector), semantic retrieval, NER-based query understanding, relevance tuning
-
-**AI/ML & RAG:** Retrieval-Augmented Generation pipelines, embeddings-based retrieval, LLM integration, prompt engineering, semantic backfill, intelligent query routing
+**Search, AI & RAG:** OpenSearch, Elasticsearch, hybrid search (BM25 + dense vector), semantic retrieval, Retrieval-Augmented Generation (RAG) pipelines, LLM integration, prompt engineering, NER-based query understanding, relevance tuning
 
 **Distributed Systems:** Real-time event-driven architectures (Kinesis, SQS, Lambda, Step Functions), zero-downtime migrations, shadow testing frameworks, high-availability design
 
