@@ -2,24 +2,6 @@
 
 <div class="project-entry" style="margin-bottom: 2rem;">
   <div style="display:flex; justify-content:space-between; align-items:baseline;">
-    <h2 style="margin:0;"><a href="https://github.com/aadityc91/SemanticSieve" target="_blank" class="cactus-link">SemanticSieve</a></h2>
-    <span style="color:var(--color-text-offset); font-size:0.9rem;">2026</span>
-  </div>
-  <div style="margin-top:0.5rem;">
-    <span style="background:#cba6f7; color:var(--bg-body); padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">Research</span>
-    <span style="background:var(--bg-quote); color:var(--color-text); padding:2px 8px; border-radius:4px; font-size:0.75rem; border:1px solid var(--border-color);">Python</span>
-    <span style="background:var(--bg-quote); color:var(--color-text); padding:2px 8px; border-radius:4px; font-size:0.75rem; border:1px solid var(--border-color);">RAG</span>
-  </div>
-  <p style="margin-top:0.75rem;">
-    A novel retrieval pruning framework for RAG systems. Investigates context pruning techniques that make retrieval-augmented generation faster and more cost-effective without sacrificing answer quality.
-  </p>
-  <div style="margin-top:0.5rem;">
-    <a href="https://github.com/aadityc91/SemanticSieve" class="cactus-link" style="font-size:0.9rem;">View Code</a>
-  </div>
-</div>
-
-<div class="project-entry" style="margin-bottom: 2rem;">
-  <div style="display:flex; justify-content:space-between; align-items:baseline;">
     <h2 style="margin:0;"><a href="https://github.com/aadityc91/tabtime-chrome" target="_blank" class="cactus-link">TabTime</a></h2>
     <span style="color:var(--color-text-offset); font-size:0.9rem;">2026</span>
   </div>
