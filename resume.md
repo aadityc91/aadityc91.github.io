@@ -31,6 +31,13 @@
 - Led multiple zero-downtime data migration projects across hundreds of billions of records with comprehensive shadow testing frameworks
 - Mentored engineers through complex system re-architectures, led cross-functional design reviews, and established operational best practices
 
+<h2>Volunteer</h2>
+
+### <img src="assets/codeday-icon.png" width="24" height="24" style="vertical-align: middle; margin-right: 8px; border-radius: 4px;" alt="CodeDay logo">[CodeDay](https://www.codeday.org/contact)
+*Volunteer*
+
+- Guided students in building projects and developing their coding skills
+
 <h2>Education</h2>
 
 **M.S. in Computer Science & Engineering** — The Ohio State University
