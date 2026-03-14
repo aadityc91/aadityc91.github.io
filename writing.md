@@ -7,7 +7,7 @@
 
 <div style="margin-bottom: 2rem;">
   <div style="display:flex; justify-content:space-between; align-items:baseline;">
-    <h2 style="margin:0;"><a href="https://hackernoon.com/the-math-behind-the-match-building-production-search-for-people-names" target="_blank" class="cactus-link">The Math Behind the Match: Building Production Search for People Names</a></h2>
+    <h3 style="margin:0; font-size:1.1rem;"><a href="https://hackernoon.com/the-math-behind-the-match-building-production-search-for-people-names" target="_blank" class="cactus-link">The Math Behind the Match: Building Production Search for People Names</a></h3>
     <span style="color:var(--color-text-offset); font-size:0.9rem; white-space:nowrap; margin-left:1rem;">Mar 2026</span>
   </div>
   <p style="margin-top:0.75rem; color:var(--color-global-text); opacity:0.85;">
@@ -17,7 +17,7 @@
 
 <div style="margin-bottom: 2rem;">
   <div style="display:flex; justify-content:space-between; align-items:baseline;">
-    <h2 style="margin:0;"><a href="https://hackernoon.com/ai-is-disrupting-everything-should-you-even-study-computer-science" target="_blank" class="cactus-link">AI is Disrupting Everything: Should You Even Study Computer Science?</a></h2>
+    <h3 style="margin:0; font-size:1.1rem;"><a href="https://hackernoon.com/ai-is-disrupting-everything-should-you-even-study-computer-science" target="_blank" class="cactus-link">AI is Disrupting Everything: Should You Even Study Computer Science?</a></h3>
     <span style="color:var(--color-text-offset); font-size:0.9rem; white-space:nowrap; margin-left:1rem;">Feb 2026</span>
   </div>
   <p style="margin-top:0.75rem; color:var(--color-global-text); opacity:0.85;">

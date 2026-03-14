@@ -13,11 +13,11 @@
 
 **Search, AI & RAG:** OpenSearch, Elasticsearch, hybrid search (BM25 + dense vector), semantic retrieval, Retrieval-Augmented Generation (RAG) pipelines, LLM integration, prompt engineering, NER-based query understanding, relevance tuning
 
-**Distributed Systems:** Real-time event-driven architectures (Kinesis, SQS, Lambda, Step Functions), zero-downtime migrations, shadow testing frameworks, high-availability design
+**Distributed Systems:** Real-time event-driven architectures (Kinesis, SQS, Lambda, Step Functions), shadow testing frameworks, high-availability design
 
-**Data & Infrastructure:** DynamoDB (GSI strategies, transaction handling), streaming pipelines, sub-second latency optimization, monitoring & operational excellence
+**Data & Infrastructure:** DynamoDB (GSI strategies, transaction handling), streaming pipelines, monitoring & operational excellence
 
-**Languages & Tools:** Java, Python, JavaScript, AWS (OpenSearch, DynamoDB, Kinesis, Lambda, SQS, Step Functions, S3, CloudWatch, IAM), Git, Docker
+**Languages & Tools:** Java, Python, JavaScript, AWS (OpenSearch, DynamoDB, Kinesis, Lambda, SQS, Step Functions, S3, CloudWatch, IAM), Git
 
 <h2>Experience</h2>
 
