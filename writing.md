@@ -7,6 +7,16 @@
 
 <div style="margin-bottom: 2rem;">
   <div style="display:flex; justify-content:space-between; align-items:baseline;">
+    <h3 style="margin:0; font-size:1.1rem;"><a href="https://hackernoon.com/your-embedding-model-will-deprecate-heres-what-to-do" target="_blank" class="cactus-link">Your Embedding Model Will Deprecate. Here's What to Do.</a></h3>
+    <span style="color:var(--color-text-offset); font-size:0.9rem; white-space:nowrap; margin-left:1rem;">May 2026</span>
+  </div>
+  <p style="margin-top:0.75rem; color:var(--color-global-text); opacity:0.85;">
+    Every embedding model gets deprecated eventually. A practitioner's guide to migrating a production RAG pipeline without breaking search quality or your budget.
+  </p>
+</div>
+
+<div style="margin-bottom: 2rem;">
+  <div style="display:flex; justify-content:space-between; align-items:baseline;">
     <h3 style="margin:0; font-size:1.1rem;"><a href="https://hackernoon.com/from-exact-knn-to-diskann-the-evolution-of-high-performance-vector-search" target="_blank" class="cactus-link">From Exact kNN to DiskANN: The Evolution of High-Performance Vector Search</a></h3>
     <span style="color:var(--color-text-offset); font-size:0.9rem; white-space:nowrap; margin-left:1rem;">Mar 2026</span>
   </div>
