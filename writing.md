@@ -44,3 +44,18 @@
     Exploring whether a CS degree still makes sense in an era where AI is reshaping the software engineering profession.
   </p>
 </div>
+
+<div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem; margin-top:2.5rem;">
+  <img src="https://www.infoq.com/favicon.ico" width="18" height="18" style="border-radius:3px; vertical-align:middle;" alt="InfoQ">
+  <a href="https://www.infoq.com/profile/Aaditya-Chauhan/" target="_blank" class="cactus-link" style="font-size:0.9rem;">Articles on InfoQ</a>
+</div>
+
+<div style="margin-bottom: 2rem;">
+  <div style="display:flex; justify-content:space-between; align-items:baseline;">
+    <h3 style="margin:0; font-size:1.1rem;"><a href="https://www.infoq.com/articles/vector-search-hybrid-retrieval-rag/" target="_blank" class="cactus-link">Why Vector Search Alone Isn't Enough: Hybrid Retrieval for RAG</a></h3>
+    <span style="color:var(--color-text-offset); font-size:0.9rem; white-space:nowrap; margin-left:1rem;">Jun 2026</span>
+  </div>
+  <p style="margin-top:0.75rem; color:var(--color-global-text); opacity:0.85;">
+    Discussing the limitations of vector-only RAG pipelines and how combining BM25 with vector search via Reciprocal Rank Fusion enhances retrieval quality in production.
+  </p>
+</div>
