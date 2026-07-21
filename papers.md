@@ -12,7 +12,7 @@
 
 <div style="margin-bottom: 2rem;">
   <div style="display:flex; justify-content:space-between; align-items:baseline;">
-    <h3 style="margin:0; font-size:1.1rem;">Chunking Is Not the Bottleneck: Why RAG Evaluation Must Look beyond Segmentation Strategy</h3>
+    <h3 style="margin:0; font-size:1.1rem;"><a href="https://www.scitepress.org/Papers/2026/151504/151504.pdf" target="_blank" class="cactus-link">Chunking Is Not the Bottleneck: Why RAG Evaluation Must Look beyond Segmentation Strategy</a></h3>
     <span style="color:var(--color-text-offset); font-size:0.9rem; white-space:nowrap; margin-left:1rem;">2026</span>
   </div>
   <p style="margin-top:0.5rem; font-size:0.9rem; color:var(--color-global-text); opacity:0.7;">
