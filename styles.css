@@ -1,3 +1,52 @@
+/* Self-hosted fonts -- no third-party request chain on first paint.
+   Latin subset only: covers ASCII plus common accents (U+0000-00FF). */
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('assets/fonts/inter-400-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('assets/fonts/inter-600-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('assets/fonts/jetbrains-mono-400-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('assets/fonts/jetbrains-mono-500-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('assets/fonts/jetbrains-mono-700-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
 /* Reset and base styles */
 * {
     box-sizing: border-box;
@@ -11,6 +60,11 @@ html {
 
 /* CSS Custom Properties for theming */
 :root {
+    /* Type: mono carries the site's character (headings, nav, code, data);
+       Inter carries long-form prose, which mono makes tiring to read. */
+    --font-mono: 'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+    --font-text: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
     /* Light theme colors (inspired by astro-theme-cactus) */
     --color-global-bg: oklch(98.48% 0 0);
     --color-global-text: oklch(26.99% 0.0096 235.05);
@@ -38,7 +92,7 @@ html {
 
 /* Base typography */
 body {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-family: var(--font-mono);
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -204,7 +258,7 @@ body {
 }
 
 .font-mono {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .antialiased {
@@ -771,6 +825,23 @@ body {
     margin-bottom: 1.25rem;
 }
 
+/* Body prose reads in Inter; everything structural stays mono. */
+.prose p,
+.prose li {
+    font-family: var(--font-text);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    letter-spacing: 0.001em;
+}
+
+/* Bibliographic data is data, not prose -- keep it mono. */
+.prose .paper-meta,
+.prose .paper-meta p {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.65;
+}
+
 .prose ul,
 .prose ol {
     margin-bottom: 1.25rem;
@@ -849,6 +920,7 @@ body {
 }
 
 .prose code {
+    font-family: var(--font-mono);
     background-color: color-mix(in srgb, var(--color-accent-2) 10%, transparent);
     border: 1px dotted #666;
     border-radius: 2px;
@@ -1595,11 +1667,13 @@ html {
     }
 }
 /* Citation (BibTeX) disclosure on the Papers section */
-.cite-block {
+.cite-block,
+.abstract-block {
     margin-top: 0.75rem;
 }
 
-.cite-block summary {
+.cite-block summary,
+.abstract-block summary {
     display: inline-block;
     cursor: pointer;
     font-size: 0.8rem;
@@ -1611,18 +1685,22 @@ html {
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.cite-block summary:hover {
+.cite-block summary:hover,
+.abstract-block summary:hover {
     background-color: color-mix(in srgb, var(--color-accent-2) 8%, transparent);
     border-color: var(--color-link);
 }
 
 .cite-block summary::marker,
-.cite-block summary::-webkit-details-marker {
+.cite-block summary::-webkit-details-marker,
+.abstract-block summary::marker,
+.abstract-block summary::-webkit-details-marker {
     content: "";
     display: none;
 }
 
-.cite-block[open] summary {
+.cite-block[open] summary,
+.abstract-block[open] summary {
     margin-bottom: 0.5rem;
 }
 
@@ -1658,4 +1736,58 @@ html {
 
 .cite-copy:hover {
     text-decoration: underline;
+}
+
+/* Paper abstracts -- prose, so they read in the text face, not the code face. */
+.abstract-block p {
+    margin: 0;
+    padding: 0.85rem 1rem;
+    border-left: 2px solid var(--color-accent);
+    background-color: color-mix(in srgb, var(--color-accent-2) 4%, transparent);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+/* Permalink affordance on section headings */
+.heading-anchor {
+    margin-left: 0.5rem;
+    font-size: 0.7em;
+    font-weight: 400;
+    color: var(--color-link);
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+h1:hover > .heading-anchor,
+h2:hover > .heading-anchor,
+.heading-anchor:focus-visible {
+    opacity: 0.75;
+}
+
+.heading-anchor:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* Scroll reveal. The hidden state is applied only once JS arms the observer,
+   so with JS off (or if the observer never fires) content stays visible. */
+.js-reveal .reveal-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    will-change: opacity, transform;
+}
+
+.js-reveal .reveal-item.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .js-reveal .reveal-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }

@@ -299,6 +299,12 @@ class MarkdownLoader {
                     if (typeof window.addCiteCopyButtons === 'function') {
                         window.addCiteCopyButtons(contentElement);
                     }
+                    if (typeof window.addHeadingAnchors === 'function') {
+                        window.addHeadingAnchors(document);
+                    }
+                    if (typeof window.armScrollReveal === 'function') {
+                        window.armScrollReveal(document);
+                    }
                     console.log(`Successfully loaded ${section} from: ${fullPath}`);
                     return; // Success, exit early
                 } else {
@@ -403,6 +409,87 @@ class MarkdownLoader {
     }
 
     window.addCiteCopyButtons = addCopyButtons;
+})();
+
+
+// Permalink anchors on section headings. Section <h1>s link to their parent
+// section's id; <h2>s get a slugified id of their own.
+(function () {
+    const slugify = text => text.toLowerCase().trim()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/[\s_]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+
+    function addHeadingAnchors(root) {
+        const targetRoot = root || document.body;
+        const scope = targetRoot.closest ? (targetRoot.closest('section[id]') ? targetRoot : targetRoot) : targetRoot;
+
+        scope.querySelectorAll('section[id] .prose h1, section[id] .prose h2').forEach(heading => {
+            if (heading.querySelector('.heading-anchor')) return;
+
+            const section = heading.closest('section[id]');
+            let id;
+
+            if (heading.tagName === 'H1') {
+                id = section.id;
+            } else {
+                id = heading.id || `${section.id}-${slugify(heading.textContent)}`;
+                // Guard against a slug colliding with an existing element.
+                let candidate = id, n = 2;
+                while (document.getElementById(candidate) && document.getElementById(candidate) !== heading) {
+                    candidate = `${id}-${n++}`;
+                }
+                heading.id = id = candidate;
+            }
+
+            const anchor = document.createElement('a');
+            anchor.className = 'heading-anchor';
+            anchor.href = `#${id}`;
+            anchor.textContent = '#';
+            anchor.setAttribute('aria-label', `Link to ${heading.textContent.trim()}`);
+            heading.appendChild(anchor);
+        });
+    }
+
+    window.addHeadingAnchors = addHeadingAnchors;
+})();
+
+// Scroll reveal. The hidden state lives behind the .js-reveal class, which is
+// only added once an observer is actually armed -- so with JS off, or if
+// IntersectionObserver is missing, content renders normally. A timeout also
+// force-reveals everything, so a section can never end up stuck invisible.
+(function () {
+    if (!('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+        });
+    }, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
+
+    function revealAll() {
+        document.querySelectorAll('.reveal-item').forEach(el => el.classList.add('is-visible'));
+    }
+
+    function armScrollReveal(root) {
+        const targetRoot = root || document.body;
+        const items = targetRoot.querySelectorAll('section[id] .prose > *');
+        if (!items.length) return;
+
+        document.documentElement.classList.add('js-reveal');
+        items.forEach(el => {
+            if (el.classList.contains('reveal-item')) return;
+            el.classList.add('reveal-item');
+            observer.observe(el);
+        });
+
+        clearTimeout(armScrollReveal._safety);
+        armScrollReveal._safety = setTimeout(revealAll, 2000);
+    }
+
+    window.armScrollReveal = armScrollReveal;
 })();
 
 // Hover effect for letter 'b' and 'B'
@@ -532,6 +619,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (typeof window.addCiteCopyButtons === 'function') {
         window.addCiteCopyButtons(document.body);
+    }
+
+    if (typeof window.addHeadingAnchors === 'function') {
+        window.addHeadingAnchors(document);
+    }
+
+    if (typeof window.armScrollReveal === 'function') {
+        window.armScrollReveal(document);
     }
 
     // Initialize party hat explosion feature
