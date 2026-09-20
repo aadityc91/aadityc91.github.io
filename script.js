@@ -260,7 +260,7 @@ class LazyImageLoader {
 // Markdown content loader
 class MarkdownLoader {
     constructor() {
-        this.sections = ['about', 'news', 'papers', 'talks', 'writing', 'resume'];
+        this.sections = ['about', 'papers', 'talks', 'writing', 'resume'];
         this.init();
     }
 
@@ -295,6 +295,9 @@ class MarkdownLoader {
                     // Apply hover effect to new content
                     if (typeof window.applyBHoverEffect === 'function') {
                         window.applyBHoverEffect(contentElement);
+                    }
+                    if (typeof window.addCiteCopyButtons === 'function') {
+                        window.addCiteCopyButtons(contentElement);
                     }
                     console.log(`Successfully loaded ${section} from: ${fullPath}`);
                     return; // Success, exit early
@@ -368,6 +371,39 @@ class MarkdownLoader {
         return html;
     }
 }
+
+// Copy-to-clipboard for BibTeX citation blocks (progressive enhancement:
+// the <details> disclosure works fine without this).
+(function () {
+    function addCopyButtons(root) {
+        const targetRoot = root || document.body;
+        targetRoot.querySelectorAll('.cite-block').forEach(block => {
+            if (block.querySelector('.cite-copy')) return;
+
+            const code = block.querySelector('pre code');
+            if (!code || !navigator.clipboard) return;
+
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'cite-copy';
+            button.textContent = 'Copy';
+
+            button.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(code.textContent);
+                    button.textContent = 'Copied';
+                } catch (error) {
+                    button.textContent = 'Copy failed';
+                }
+                setTimeout(() => { button.textContent = 'Copy'; }, 1500);
+            });
+
+            block.appendChild(button);
+        });
+    }
+
+    window.addCiteCopyButtons = addCopyButtons;
+})();
 
 // Hover effect for letter 'b' and 'B'
 (function () {
@@ -492,6 +528,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Apply hover effect to all 'b' letters on initial content
     if (typeof window.applyBHoverEffect === 'function') {
         window.applyBHoverEffect(document.body);
+    }
+
+    if (typeof window.addCiteCopyButtons === 'function') {
+        window.addCiteCopyButtons(document.body);
     }
 
     // Initialize party hat explosion feature

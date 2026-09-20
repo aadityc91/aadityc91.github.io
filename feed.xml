@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Aaditya Chauhan — Writing</title>
+    <link>https://aadityc91.github.io/#writing</link>
+    <atom:link href="https://aadityc91.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Articles on search, information retrieval, and RAG systems by Aaditya Chauhan.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Sep 2026 18:44:47 +0000</lastBuildDate>
+    <item>
+      <title>Why Vector Search Alone Isn&#x27;t Enough: Hybrid Retrieval for RAG</title>
+      <link>https://www.infoq.com/articles/vector-search-hybrid-retrieval-rag/</link>
+      <guid isPermaLink="true">https://www.infoq.com/articles/vector-search-hybrid-retrieval-rag/</guid>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Discussing the limitations of vector-only RAG pipelines and how combining BM25 with vector search via Reciprocal Rank Fusion enhances retrieval quality in production.</description>
+    </item>
+    <item>
+      <title>Your Embedding Model Will Deprecate. Here&#x27;s What to Do.</title>
+      <link>https://hackernoon.com/your-embedding-model-will-deprecate-heres-what-to-do</link>
+      <guid isPermaLink="true">https://hackernoon.com/your-embedding-model-will-deprecate-heres-what-to-do</guid>
+      <pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Every embedding model gets deprecated eventually. A practitioner&#x27;s guide to migrating a production RAG pipeline without breaking search quality or your budget.</description>
+    </item>
+    <item>
+      <title>From Exact kNN to DiskANN: The Evolution of High-Performance Vector Search</title>
+      <link>https://hackernoon.com/from-exact-knn-to-diskann-the-evolution-of-high-performance-vector-search</link>
+      <guid isPermaLink="true">https://hackernoon.com/from-exact-knn-to-diskann-the-evolution-of-high-performance-vector-search</guid>
+      <pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <description>After years building search systems at hundreds of billions of records, here&#x27;s what I learned about scaling vector search from kNN to HNSW to DiskANN.</description>
+    </item>
+    <item>
+      <title>The Math Behind the Match: Building Production Search for People Names</title>
+      <link>https://hackernoon.com/the-math-behind-the-match-building-production-search-for-people-names</link>
+      <guid isPermaLink="true">https://hackernoon.com/the-math-behind-the-match-building-production-search-for-people-names</guid>
+      <pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <description>A deep dive into the algorithms and engineering tradeoffs behind building a people-name search system at production scale.</description>
+    </item>
+    <item>
+      <title>AI is Disrupting Everything: Should You Even Study Computer Science?</title>
+      <link>https://hackernoon.com/ai-is-disrupting-everything-should-you-even-study-computer-science</link>
+      <guid isPermaLink="true">https://hackernoon.com/ai-is-disrupting-everything-should-you-even-study-computer-science</guid>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
+      <description>Exploring whether a CS degree still makes sense in an era where AI is reshaping the software engineering profession.</description>
+    </item>
+  </channel>
+</rss>
