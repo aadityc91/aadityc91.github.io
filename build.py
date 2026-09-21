@@ -157,7 +157,7 @@ def write_feed() -> None:
         f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{AUTHOR} — Writing</title>
+    <title>{AUTHOR} Writing</title>
     <link>{BASE_URL}/#writing</link>
     <atom:link href="{BASE_URL}/feed.xml" rel="self" type="application/rss+xml" />
     <description>Articles on search, information retrieval, and RAG systems by {AUTHOR}.</description>

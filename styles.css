@@ -2,24 +2,6 @@
    Latin subset only: covers ASCII plus common accents (U+0000-00FF). */
 
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('assets/fonts/inter-400-latin.woff2') format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url('assets/fonts/inter-600-latin.woff2') format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
     font-family: 'JetBrains Mono';
     font-style: normal;
     font-weight: 400;
@@ -60,10 +42,7 @@ html {
 
 /* CSS Custom Properties for theming */
 :root {
-    /* Type: mono carries the site's character (headings, nav, code, data);
-       Inter carries long-form prose, which mono makes tiring to read. */
     --font-mono: 'JetBrains Mono', ui-monospace, 'Courier New', monospace;
-    --font-text: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
     /* Light theme colors (inspired by astro-theme-cactus) */
     --color-global-bg: oklch(98.48% 0 0);
@@ -99,7 +78,7 @@ body {
     background-color: var(--color-global-bg);
     color: var(--color-global-text);
     transition: opacity 0.2s ease;
-    padding-top: 8rem;
+    padding-top: 6rem;
     /* Increased to account for fixed header */
 }
 
@@ -186,7 +165,7 @@ body {
 }
 
 .mb-8 {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .mb-16 {
@@ -801,16 +780,16 @@ body {
     color: var(--color-accent-2);
     font-weight: 600;
     line-height: 1.25;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .prose h1 {
-    font-size: 2.25rem;
+    font-size: 1.9rem;
 }
 
 .prose h2 {
-    font-size: 1.875rem;
+    font-size: 1.5rem;
 }
 
 .prose h3 {
@@ -822,24 +801,13 @@ body {
 }
 
 .prose p {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
 }
 
-/* Body prose reads in Inter; everything structural stays mono. */
-.prose p,
-.prose li {
-    font-family: var(--font-text);
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    letter-spacing: 0.001em;
-}
-
-/* Bibliographic data is data, not prose -- keep it mono. */
-.prose .paper-meta,
-.prose .paper-meta p {
-    font-family: var(--font-mono);
+/* Bibliographic data sits tighter than body prose. */
+.prose .paper-meta {
     font-size: 0.85rem;
-    line-height: 1.65;
+    line-height: 1.55;
 }
 
 .prose ul,
@@ -1666,10 +1634,22 @@ html {
         opacity: 0.8;
     }
 }
-/* Citation (BibTeX) disclosure on the Papers section */
+/* Abstract / BibTeX disclosures. Closed, they sit side by side on a single
+   line; opening one promotes it to a full-width block below the chip row. */
 .cite-block,
 .abstract-block {
-    margin-top: 0.75rem;
+    margin-top: 0.4rem;
+}
+
+.cite-block:not([open]),
+.abstract-block:not([open]) {
+    display: inline-block;
+    margin-right: 0.4rem;
+}
+
+.cite-block[open],
+.abstract-block[open] {
+    display: block;
 }
 
 .cite-block summary,
@@ -1681,7 +1661,7 @@ html {
     color: var(--color-link);
     border: 1px solid var(--color-border);
     border-radius: 4px;
-    padding: 0.15rem 0.5rem;
+    padding: 0.1rem 0.45rem;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -1701,17 +1681,17 @@ html {
 
 .cite-block[open] summary,
 .abstract-block[open] summary {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
 }
 
 .cite-block pre {
     background-color: color-mix(in srgb, var(--color-accent-2) 6%, transparent);
     border: 1px solid var(--color-border);
     border-radius: 4px;
-    padding: 0.75rem 1rem;
+    padding: 0.6rem 0.8rem;
     overflow-x: auto;
-    font-size: 0.78rem;
-    line-height: 1.5;
+    font-size: 0.72rem;
+    line-height: 1.45;
 }
 
 .cite-block pre code {
@@ -1741,11 +1721,11 @@ html {
 /* Paper abstracts -- prose, so they read in the text face, not the code face. */
 .abstract-block p {
     margin: 0;
-    padding: 0.85rem 1rem;
+    padding: 0.7rem 0.9rem;
     border-left: 2px solid var(--color-accent);
     background-color: color-mix(in srgb, var(--color-accent-2) 4%, transparent);
-    font-size: 0.95rem;
-    line-height: 1.65;
+    font-size: 0.85rem;
+    line-height: 1.6;
 }
 
 /* Permalink affordance on section headings */

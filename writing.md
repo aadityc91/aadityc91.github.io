@@ -5,7 +5,7 @@
   <a href="https://hackernoon.com/u/aadityachauhan" target="_blank" class="cactus-link" style="font-size:0.9rem;">All articles on HackerNoon</a>
 </div>
 
-<div style="margin-bottom: 2rem;">
+<div style="margin-bottom: 1.25rem;">
   <div style="display:flex; justify-content:space-between; align-items:baseline;">
     <h3 style="margin:0; font-size:1.1rem;"><a href="https://hackernoon.com/your-embedding-model-will-deprecate-heres-what-to-do" target="_blank" class="cactus-link">Your Embedding Model Will Deprecate. Here's What to Do.</a></h3>
     <span style="color:var(--color-text-offset); font-size:0.9rem; white-space:nowrap; margin-left:1rem;">Apr 2026</span>
@@ -15,7 +15,7 @@
   </p>
 </div>
 
-<div style="margin-bottom: 2rem;">
+<div style="margin-bottom: 1.25rem;">
   <div style="display:flex; justify-content:space-between; align-items:baseline;">
     <h3 style="margin:0; font-size:1.1rem;"><a href="https://hackernoon.com/from-exact-knn-to-diskann-the-evolution-of-high-performance-vector-search" target="_blank" class="cactus-link">From Exact kNN to DiskANN: The Evolution of High-Performance Vector Search</a></h3>
     <span style="color:var(--color-text-offset); font-size:0.9rem; white-space:nowrap; margin-left:1rem;">Mar 2026</span>
@@ -25,7 +25,7 @@
   </p>
 </div>
 
-<div style="margin-bottom: 2rem;">
+<div style="margin-bottom: 1.25rem;">
   <div style="display:flex; justify-content:space-between; align-items:baseline;">
     <h3 style="margin:0; font-size:1.1rem;"><a href="https://hackernoon.com/the-math-behind-the-match-building-production-search-for-people-names" target="_blank" class="cactus-link">The Math Behind the Match: Building Production Search for People Names</a></h3>
     <span style="color:var(--color-text-offset); font-size:0.9rem; white-space:nowrap; margin-left:1rem;">Mar 2026</span>
@@ -35,7 +35,7 @@
   </p>
 </div>
 
-<div style="margin-bottom: 2rem;">
+<div style="margin-bottom: 1.25rem;">
   <div style="display:flex; justify-content:space-between; align-items:baseline;">
     <h3 style="margin:0; font-size:1.1rem;"><a href="https://hackernoon.com/ai-is-disrupting-everything-should-you-even-study-computer-science" target="_blank" class="cactus-link">AI is Disrupting Everything: Should You Even Study Computer Science?</a></h3>
     <span style="color:var(--color-text-offset); font-size:0.9rem; white-space:nowrap; margin-left:1rem;">Feb 2026</span>
@@ -50,7 +50,7 @@
   <a href="https://www.infoq.com/profile/Aaditya-Chauhan/" target="_blank" class="cactus-link" style="font-size:0.9rem;">Articles on InfoQ</a>
 </div>
 
-<div style="margin-bottom: 2rem;">
+<div style="margin-bottom: 1.25rem;">
   <div style="display:flex; justify-content:space-between; align-items:baseline;">
     <h3 style="margin:0; font-size:1.1rem;"><a href="https://www.infoq.com/articles/vector-search-hybrid-retrieval-rag/" target="_blank" class="cactus-link">Why Vector Search Alone Isn't Enough: Hybrid Retrieval for RAG</a></h3>
     <span style="color:var(--color-text-offset); font-size:0.9rem; white-space:nowrap; margin-left:1rem;">Jun 2026</span>

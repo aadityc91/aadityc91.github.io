@@ -275,6 +275,14 @@ class MarkdownLoader {
         const contentElement = document.getElementById(`${section}-content`);
         if (!contentElement) return;
 
+        // build.py pre-renders each section into index.html. When that markup is
+        // present, do not re-fetch: a cached .md can be older than the page and
+        // would replace correct content with stale content.
+        if (contentElement.textContent.trim().length > 0) {
+            console.log(`Using pre-rendered ${section} content`);
+            return;
+        }
+
         // Try multiple path strategies for better compatibility
         const pathsToTry = [
             `./${section}.md`,           // Relative to current directory
