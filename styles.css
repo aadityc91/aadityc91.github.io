@@ -1718,8 +1718,30 @@ html {
     text-decoration: underline;
 }
 
-/* Paper abstracts -- prose, so they read in the text face, not the code face. */
-.abstract-block p {
+/* Multi-paragraph abstracts: one panel, paragraphs inside it. */
+.abstract-block .panel {
+    padding: 0.7rem 0.9rem;
+    border-left: 2px solid var(--color-accent);
+    background-color: color-mix(in srgb, var(--color-accent-2) 4%, transparent);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.abstract-block .panel p {
+    margin: 0 0 0.65rem;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.abstract-block .panel p:last-child {
+    margin-bottom: 0;
+}
+
+/* Single-paragraph abstracts (the papers). */
+.abstract-block > p {
     margin: 0;
     padding: 0.7rem 0.9rem;
     border-left: 2px solid var(--color-accent);
