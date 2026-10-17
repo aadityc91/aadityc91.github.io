@@ -7,7 +7,7 @@
   </div>
   <p class="paper-meta" style="margin-top:0.5rem; color:var(--color-global-text); opacity:0.85;">
     IEEE Seattle Section · Virtual · IEEE Day 2026<br>
-    With Anuj Kapoor (Microsoft)
+    With Anuj Kapoor (Microsoft) · <a href="https://web.archive.org/web/20261017204233/https://events.vtools.ieee.org/m/586098" target="_blank" class="cactus-link">archived copy</a>
   </p>
   <details class="abstract-block">
     <summary>Abstract</summary>
