@@ -85,6 +85,26 @@
         },
         {
           "@type": "ScholarlyArticle",
+          "headline": "The Fusion Tax: A Diagnostic Analysis of When Hybrid Retrieval Hurts",
+          "name": "The Fusion Tax: A Diagnostic Analysis of When Hybrid Retrieval Hurts",
+          "author": [
+            { "@id": "https://aadityc91.github.io/#person" },
+            { "@type": "Person", "name": "Arun Agarwal" }
+          ],
+          "datePublished": "2026-10-15",
+          "url": "https://ieeexplore.ieee.org/document/11738423",
+          "identifier": "https://doi.org/10.1109/ACCESS.2026.3743502",
+          "isPartOf": {
+            "@type": "Periodical",
+            "name": "IEEE Access",
+            "issn": "2169-3536"
+          },
+          "publisher": { "@type": "Organization", "name": "IEEE" },
+          "isAccessibleForFree": true,
+          "about": ["Information Retrieval", "Hybrid Retrieval", "Retrieval-Augmented Generation"]
+        },
+        {
+          "@type": "ScholarlyArticle",
           "headline": "PageRecall: Measuring Page Selection in Literature-Grounded Question Answering",
           "name": "PageRecall: Measuring Page Selection in Literature-Grounded Question Answering",
           "author": { "@id": "https://aadityc91.github.io/#person" },
@@ -242,6 +262,34 @@
             <div class="prose" id="papers-content">
                 <!-- build:papers -->
                 <h1 class="title">Papers</h1>
+
+                <div style="margin-bottom: 1.25rem;">
+                  <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                    <h3 style="margin:0; font-size:1.1rem;"><a href="https://ieeexplore.ieee.org/document/11738423" target="_blank" class="cactus-link">The Fusion Tax: A Diagnostic Analysis of When Hybrid Retrieval Hurts</a></h3>
+                    <span style="color:var(--color-text-offset); font-size:0.9rem; white-space:nowrap; margin-left:1rem;">2026</span>
+                  </div>
+                  <p class="paper-meta" style="margin-top:0.5rem; color:var(--color-global-text); opacity:0.75;">
+                    Aaditya Chauhan, Arun Agarwal<br>
+                    IEEE Access (Early Access), Oct 2026 · <a href="https://doi.org/10.1109/ACCESS.2026.3743502" target="_blank" class="cactus-link">doi:10.1109/ACCESS.2026.3743502</a>
+                  </p>
+                  <details class="abstract-block">
+                    <summary>Abstract</summary>
+                    <p>Hybrid retrieval, which fuses a sparse lexical retriever with a dense neural one, is the default recommendation of most search stacks and retrieval-augmented generation frameworks, usually with reciprocal rank fusion (RRF), on the strength of aggregate gains. We ask what fusion costs on individual queries, treating “do not fuse” as a first-class outcome, in the setting in which hybrid retrieval is deployed: a standard Anserini BM25, five dense encoders spanning 22M–596M parameters and three model generations, a learned-sparse (SPLADE) alternative, and a cross-encoder second stage, on seven BEIR datasets and three fusion functions. Even the best method, dense-weighted score interpolation, ranks relevant documents below the better of its two components on 13–48% of queries and below the deployable dense-only retriever on 8–21% (14–48% and 11–25% at a weight selected under leave-one-corpus-out validation), while beating dense-only in aggregate on every corpus with the primary encoder; the downside is significant under loss-averse risk-sensitive evaluation on six of the seven corpora. We call this loss the fusion tax. It is mostly a ranking effect that preserves recall in aggregate, it is most likely on the queries that only one retriever covers, and it persists across the encoder ladder and the SPLADE substitution. RRF carries the higher tax wherever the dense retriever is clearly stronger and only beats dense-only where the two components are balanced. Fusion failure is weakly predictable within a corpus but transfers unreliably across corpora, because the features that predict it change sign with the sparse–dense balance. A cross-encoder recovers part of the tax only where it is itself reliable. We distill these findings into guidance that keys the fusion decision to the measured sparse–dense balance of the target corpus.</p>
+                  </details>
+                  <details class="cite-block">
+                    <summary>BibTeX</summary>
+                    <pre><code>@article{chauhan2026fusiontax,
+                  author  = {Chauhan, Aaditya and Agarwal, Arun},
+                  title   = {The Fusion Tax: A Diagnostic Analysis of When Hybrid
+                             Retrieval Hurts},
+                  journal = {IEEE Access},
+                  year    = {2026},
+                  doi     = {10.1109/ACCESS.2026.3743502},
+                  issn    = {2169-3536},
+                  note    = {Early Access}
+                }</code></pre>
+                  </details>
+                </div>
 
                 <div style="margin-bottom: 1.25rem;">
                   <div style="display:flex; justify-content:space-between; align-items:baseline;">
