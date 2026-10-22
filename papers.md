@@ -7,11 +7,16 @@
   </div>
   <p class="paper-meta" style="margin-top:0.5rem; color:var(--color-global-text); opacity:0.75;">
     Aaditya Chauhan, Arun Agarwal<br>
-    IEEE Access (Early Access), Oct 2026 · <a href="https://doi.org/10.1109/ACCESS.2026.3743502" target="_blank" class="cactus-link">doi:10.1109/ACCESS.2026.3743502</a>
+    IEEE Access, vol. 14, pp. 159620–159637, Oct 2026 · <a href="https://doi.org/10.1109/ACCESS.2026.3743502" target="_blank" class="cactus-link">doi:10.1109/ACCESS.2026.3743502</a>
+    <!-- arXiv: add once announced, e.g.
+    <br>arXiv preprint <a href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank" class="cactus-link">arXiv:XXXX.XXXXX</a> -->
   </p>
+  <div style="margin-top:0.4rem;">
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" style="background:var(--color-accent); color:var(--color-global-bg); padding:2px 8px; border-radius:4px; font-size:0.72rem; font-weight:bold; text-decoration:none;">Open Access (CC BY 4.0)</a>
+  </div>
   <details class="abstract-block">
     <summary>Abstract</summary>
-    <p>Hybrid retrieval, which fuses a sparse lexical retriever with a dense neural one, is the default recommendation of most search stacks and retrieval-augmented generation frameworks, usually with reciprocal rank fusion (RRF), on the strength of aggregate gains. We ask what fusion costs on individual queries, treating “do not fuse” as a first-class outcome, in the setting in which hybrid retrieval is deployed: a standard Anserini BM25, five dense encoders spanning 22M–596M parameters and three model generations, a learned-sparse (SPLADE) alternative, and a cross-encoder second stage, on seven BEIR datasets and three fusion functions. Even the best method, dense-weighted score interpolation, ranks relevant documents below the better of its two components on 13–48% of queries and below the deployable dense-only retriever on 8–21% (14–48% and 11–25% at a weight selected under leave-one-corpus-out validation), while beating dense-only in aggregate on every corpus with the primary encoder; the downside is significant under loss-averse risk-sensitive evaluation on six of the seven corpora. We call this loss the fusion tax. It is mostly a ranking effect that preserves recall in aggregate, it is most likely on the queries that only one retriever covers, and it persists across the encoder ladder and the SPLADE substitution. RRF carries the higher tax wherever the dense retriever is clearly stronger and only beats dense-only where the two components are balanced. Fusion failure is weakly predictable within a corpus but transfers unreliably across corpora, because the features that predict it change sign with the sparse–dense balance. A cross-encoder recovers part of the tax only where it is itself reliable. We distill these findings into guidance that keys the fusion decision to the measured sparse–dense balance of the target corpus.</p>
+    <p>Hybrid retrieval, which fuses a sparse lexical retriever with a dense neural one, is widely recommended in the software documentation surveyed in September 2026, usually with reciprocal rank fusion (RRF), on the strength of aggregate gains. We ask what fusion costs on individual queries, treating “do not fuse” as a first-class outcome, in the setting in which hybrid retrieval is deployed: a standard Anserini BM25, five dense encoders spanning 22M–596M parameters and three model generations, a learned-sparse (SPLADE) alternative, and a cross-encoder second stage, on seven BEIR datasets and three fusion functions. Even the best method, dense-weighted score interpolation, ranks relevant documents below the better of its two components on 13–48% of queries and below the deployable dense-only retriever on 8–21% (14–48% and 11–25% at a weight selected under leave-one-corpus-out validation), while beating dense-only in aggregate on every corpus with the primary encoder; the downside is significant under loss-averse risk-sensitive evaluation on six of the seven corpora. We call this loss the fusion tax. It is mostly a ranking effect that preserves recall in aggregate, it is most likely on the queries that only one retriever covers, and it persists across the encoder ladder and the SPLADE substitution. RRF carries the higher tax wherever the dense retriever is clearly stronger and only beats dense-only where the two components are balanced. Fusion failure is weakly predictable within a corpus but transfers unreliably across corpora, because the features that predict it change sign with the sparse–dense balance. A cross-encoder recovers part of the tax only where it is itself reliable. We distill these findings into guidance that keys the fusion decision to the measured sparse–dense balance of the target corpus.</p>
   </details>
   <details class="cite-block">
     <summary>BibTeX</summary>
@@ -20,10 +25,12 @@
   title   = {The Fusion Tax: A Diagnostic Analysis of When Hybrid
              Retrieval Hurts},
   journal = {IEEE Access},
+  volume  = {14},
+  pages   = {159620--159637},
   year    = {2026},
+  month   = oct,
   doi     = {10.1109/ACCESS.2026.3743502},
-  issn    = {2169-3536},
-  note    = {Early Access}
+  issn    = {2169-3536}
 }</code></pre>
   </details>
 </div>
