@@ -63,6 +63,29 @@ def parse_markdown(markdown: str) -> str:
     return out
 
 
+def indent_outside_pre(lines):
+    """Indent for readable HTML, but never inside <pre>.
+
+    Whitespace is significant in <pre>, so indenting those lines would prepend
+    it to the rendered text -- which is what the BibTeX copy button hands the
+    reader. The line that opens the block is still indented: its padding sits
+    before <pre>, outside the element.
+    """
+    out, in_pre = [], False
+    for line in lines:
+        if in_pre:
+            out.append(line)
+            if "</pre>" in line:
+                in_pre = False
+        elif not line.strip():
+            out.append("")
+        else:
+            out.append(f"                {line}")
+            if "<pre" in line and "</pre>" not in line:
+                in_pre = True
+    return out
+
+
 def render_index() -> None:
     index_path = ROOT / "index.html"
     index = index_path.read_text()
@@ -73,7 +96,7 @@ def render_index() -> None:
             raise SystemExit(f"missing {source.name} -- referenced by index.html")
 
         rendered = parse_markdown(source.read_text()).strip()
-        body = "\n".join(f"                {line}" if line.strip() else "" for line in rendered.splitlines())
+        body = "\n".join(indent_outside_pre(rendered.splitlines()))
         block = (
             f"<!-- build:{section} -->\n{body}\n"
             f"                <!-- /build:{section} -->"
