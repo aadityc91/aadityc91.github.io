@@ -132,7 +132,7 @@
                         inputs on 13–48%.</li>
                     <li>RRF is the weaker choice when one retriever is clearly stronger; a dense-weighted score blend
                         wins there. RRF earns its keep when the two are evenly matched.</li>
-                    <li>Bigger encoders and per-query routing don't fix it. Measure your retrievers' balance on a few
+                    <li>Bigger encoders and cheap per-query routing don't fix it. Measure your retrievers' balance on a few
                         hundred labeled queries, pick the fusion method from it, and keep dense-only on the table.</li>
                 </ul>
             </div>
@@ -143,10 +143,12 @@
                 June. But it rests on averages, and averages hide things. A system can improve on average while getting
                 worse on one query in five.</p>
 
-            <p>So in <a href="https://doi.org/10.1109/ACCESS.2026.3743502">The Fusion Tax</a>, our IEEE Access paper,
-                Arun Agarwal and I asked a per-query question: how often does fusion rank the relevant documents below
-                the better of its own two inputs, or below the one retriever you'd ship if you didn't fuse at all? The
-                We treated “don't fuse” as a real option. The figures below run on the paper's real per-query results.</p>
+            <p>So in <a href="https://doi.org/10.1109/ACCESS.2026.3743502">The Fusion Tax</a>, our IEEE Access
+                paper, Arun Agarwal and I asked a per-query question: how often does fusion rank the relevant
+                documents below the better of its own two inputs, or below the one retriever you'd ship if you
+                didn't fuse at all? That per-query loss is what we call the fusion tax: a ranking loss on a single
+                query, not a compute bill. We treated “don't fuse” as a real option. The figures below run on the
+                paper's real per-query results.</p>
 
             <h2 id="one-query">Start with one query</h2>
 
@@ -257,11 +259,12 @@
             <h2 id="rrf">Is RRF really the safe default?</h2>
 
             <p>This is where I walk back some of my own advice. In the InfoQ piece I recommended RRF over weighted
-                blending because it needs no score calibration. On the five corpora where dense clearly led (by about
-                0.04–0.18 nDCG@10), dense-weighted interpolation beat RRF, significantly on four, and RRF trailed plain
-                dense search on all five. RRF weights both lists equally and throws the scores away, so a confident
-                first place counts the same as a lucky one. Giving RRF the same 0.7/0.3 weights closes 25–73% of the
-                gap to interpolation, so each of those explains roughly half.</p>
+                blending because it needs no score calibration. On the five corpora where dense clearly led (by
+                about 0.04–0.18 nDCG@10), dense-weighted interpolation beat RRF at the usual k&nbsp;=&nbsp;60
+                default, significantly on four, and RRF trailed plain dense search on all five. RRF weights both
+                lists equally and throws the scores away, so a confident first place counts the same as a lucky one.
+                Giving RRF the same 0.7/0.3 weights closes 25–73% of the gap to interpolation, so each of those
+                explains roughly half.</p>
 
             <p>Where the retrievers are balanced, RRF wins. On TREC-COVID (BM25 0.656, dense 0.666), RRF scored 0.801
                 against 0.717 for dense-heavy interpolation and helped 70–74% of queries; on NFCorpus the three methods
@@ -288,10 +291,12 @@
                     BGE-small. The dashed line marks RRF.</figcaption>
             </figure>
 
-            <p>The best weight sits in the middle and travels well. The in-sample optimum ranged from 0.5 to 0.8 and was
-                never 1.0, and a weight chosen on six corpora (0.6 or 0.7 every time) cost at most 0.014 nDCG@10 on the
-                seventh, except TREC-COVID (0.031). But the best average isn't the safest weight. On TREC-COVID, moving
-                from 0.7 to 0.5 raises mean nDCG@10 from 0.717 to 0.748, and the share of queries below dense-only from
+            <p>The best weight sits in the middle and travels well. The in-sample optimum ranged from 0.5 to 0.8
+                and was never 1.0, and a weight chosen on six corpora (0.6 or 0.7 every time) cost at most 0.014
+                nDCG@10 on the seventh, except TREC-COVID (0.031). Pick the weight on held-out queries, as I
+                recommend below, and expect a bit more harm than at a fixed 0.7: up to 25–26% of queries below
+                dense-only instead of 21%. But the best average isn't the safest weight. On TREC-COVID, moving from
+                0.7 to 0.5 raises mean nDCG@10 from 0.717 to 0.748, and the share of queries below dense-only from
                 14% to 26%.</p>
 
             <p class="rec">My starting point: 0.6–0.7 if dense leads, set by cross-validation, with the tax measured on
@@ -313,13 +318,13 @@
                     the other four encoders.</figcaption>
             </figure>
 
-            <p>Better encoders raise the scores, not the tax. At BGE-large, interpolation still hurts 17–40% of queries
-                on six corpora, and Qwen3-Embedding pays 14–43%. Where Qwen3's tax moves, it follows the balance between
-                the retrievers: highest on NFCorpus, where it barely leads BM25, and lowest on TREC-COVID and Quora,
-                where it leads by a lot. Fusion still beat dense-only on average on 33 of the 35 encoder–corpus
-                pairs. Swapping BM25 for SPLADE doesn't fix it either: interpolation's tax stays at 14–41% on six
-                corpora. So when you upgrade the encoder, re-measure the balance. It changes which fusion method you
-                should use, not whether there's a tax.</p>
+            <p>Better encoders raise the scores. They don't lower the tax. At BGE-large, interpolation still hurts
+                17–40% of queries on six corpora, and Qwen3-Embedding pays 14–43%. Where Qwen3's tax moves, it
+                follows the balance between the retrievers: highest on NFCorpus, where it barely leads BM25, and
+                lowest on TREC-COVID and Quora, where it leads by a lot. Fusion still beat dense-only on average on
+                33 of the 35 encoder–corpus pairs. Swapping BM25 for SPLADE doesn't fix it either: interpolation's
+                tax stays at 14–41% on six corpora. So when you upgrade the encoder, re-measure the balance. It
+                changes which fusion method you should use, not whether there's a tax.</p>
 
             <h2 id="routing">Can you route around it?</h2>
 
@@ -367,8 +372,10 @@
 
             <ol>
                 <li><strong>Measure the balance.</strong> Label 200–400 real queries from your traffic, judging the
-                    pooled top ten of both retrievers, and compare BM25 and dense nDCG@10 query by query. Our per-query differences had standard deviations of
-                    0.17–0.36, which gives a 95% interval of about ±0.02–0.05 on the gap at 200 queries.</li>
+                    pooled top ten of both retrievers, and compare BM25 and dense nDCG@10 query by query. Our per-query
+                    differences had standard deviations of 0.17–0.36, which gives a 95% interval of about ±0.02–0.05 on
+                    the gap at 200 queries. If that interval straddles the 0.04 line, label more. And when you evaluate
+                    fusion itself, judge the documents it pulls in from outside both top tens too.</li>
                 <li><strong>Pick the method from it.</strong> Dense ahead by 0.04 or more: dense-weighted
                     interpolation at 0.6–0.7. About even: RRF, CombMNZ or interpolation near 0.5.</li>
                 <li><strong>Keep dense-only on the table</strong>, especially if your consumer is rank-sensitive and
