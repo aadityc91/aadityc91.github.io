@@ -6,7 +6,14 @@
     <atom:link href="https://aadityc91.github.io/feed.xml" rel="self" type="application/rss+xml" />
     <description>Articles on search, information retrieval, and RAG systems by Aaditya Chauhan.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 22 Oct 2026 02:34:07 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 23 Oct 2026 22:37:27 +0000</lastBuildDate>
+    <item>
+      <title>The Fusion Tax: When Hybrid Search Hurts</title>
+      <link>https://aadityc91.github.io/writing/the-fusion-tax/</link>
+      <guid isPermaLink="true">https://aadityc91.github.io/writing/the-fusion-tax/</guid>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Hybrid search wins on average and loses on more individual queries than you&#x27;d think. The practitioner&#x27;s version of our IEEE Access paper, with interactive figures built on its per-query results.</description>
+    </item>
     <item>
       <title>Why Vector Search Alone Isn&#x27;t Enough: Hybrid Retrieval for RAG</title>
       <link>https://www.infoq.com/articles/vector-search-hybrid-retrieval-rag/</link>

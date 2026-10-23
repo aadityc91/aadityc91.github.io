@@ -1,6 +1,20 @@
 <h1 class="title">Writing</h1>
 
 <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem;">
+  <span style="font-size:0.9rem; color:var(--color-text-offset);">On this site</span>
+</div>
+
+<div style="margin-bottom: 1.25rem;">
+  <div style="display:flex; justify-content:space-between; align-items:baseline;">
+    <h3 style="margin:0; font-size:1.1rem;"><a href="https://aadityc91.github.io/writing/the-fusion-tax/" class="cactus-link">The Fusion Tax: When Hybrid Search Hurts</a></h3>
+    <span style="color:var(--color-text-offset); font-size:0.9rem; white-space:nowrap; margin-left:1rem;">Oct 2026</span>
+  </div>
+  <p style="margin-top:0.75rem; color:var(--color-global-text); opacity:0.85;">
+    Hybrid search wins on average and loses on more individual queries than you'd think. The practitioner's version of our IEEE Access paper, with interactive figures built on its per-query results.
+  </p>
+</div>
+
+<div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem; margin-top:2.5rem;">
   <img src="https://hackernoon.com/favicon.ico" width="18" height="18" style="border-radius:3px; vertical-align:middle;" alt="HackerNoon">
   <a href="https://hackernoon.com/u/aadityachauhan" target="_blank" class="cactus-link" style="font-size:0.9rem;">All articles on HackerNoon</a>
 </div>

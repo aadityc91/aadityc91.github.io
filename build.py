@@ -115,9 +115,21 @@ def render_index() -> None:
 
 
 def write_sitemap() -> None:
-    # Single-page site: the #section links are fragments of this one URL, not
-    # separate pages, so listing them here would just be noise to a crawler.
+    # The home page is one URL: its #section links are fragments of it, not
+    # separate pages, so listing them would just be noise to a crawler. Posts
+    # under writing/<slug>/ are real pages and each gets an entry.
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    posts = sorted(path.parent.name for path in (ROOT / "writing").glob("*/index.html"))
+    post_entries = "".join(
+        f"""
+  <url>
+    <loc>{BASE_URL}/writing/{slug}/</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>"""
+        for slug in posts
+    )
     (ROOT / "sitemap.xml").write_text(
         f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -126,11 +138,11 @@ def write_sitemap() -> None:
     <lastmod>{today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-  </url>
+  </url>{post_entries}
 </urlset>
 """
     )
-    print("sitemap.xml")
+    print(f"sitemap.xml ({1 + len(posts)} urls)")
 
 
 MONTHS = {
