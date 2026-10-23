@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fusion Tax: When Hybrid Search Hurts | Aaditya Chauhan</title>
+    <meta name="description"
+        content="Hybrid retrieval wins on average and still demotes relevant documents on 13–48% of queries. A practitioner's version of our IEEE Access paper, with interactive figures built on its per-query results.">
+    <meta name="author" content="Aaditya Chauhan">
+    <link rel="canonical" href="https://aadityc91.github.io/writing/the-fusion-tax/">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+    <link rel="alternate" type="application/rss+xml" title="Aaditya Chauhan Writing" href="/feed.xml">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Aaditya Chauhan">
+    <meta property="og:title" content="The Fusion Tax: When Hybrid Search Hurts">
+    <meta property="og:description"
+        content="Hybrid retrieval wins on average and still demotes relevant documents on a large share of queries. What we measured across seven corpora and five encoders, and how to decide whether to fuse.">
+    <meta property="og:url" content="https://aadityc91.github.io/writing/the-fusion-tax/">
+    <meta property="og:image" content="https://aadityc91.github.io/assets/profile.jpg">
+    <meta property="og:image:alt" content="Portrait of Aaditya Chauhan">
+    <meta property="article:author" content="https://aadityc91.github.io/">
+    <meta property="article:published_time" content="2026-10-23">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Fusion Tax: When Hybrid Search Hurts">
+    <meta name="twitter:description"
+        content="Hybrid retrieval wins on average and still demotes relevant documents on a large share of queries. With interactive figures.">
+    <meta name="twitter:image" content="https://aadityc91.github.io/assets/profile.jpg">
+
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="post.css">
+    <link rel="preload" href="../../assets/fonts/jetbrains-mono-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "The Fusion Tax: When Hybrid Search Hurts",
+      "description": "A practitioner's version of the IEEE Access paper on when hybrid retrieval hurts individual queries, with interactive figures built on its per-query results.",
+      "datePublished": "2026-10-23",
+      "url": "https://aadityc91.github.io/writing/the-fusion-tax/",
+      "mainEntityOfPage": "https://aadityc91.github.io/writing/the-fusion-tax/",
+      "image": "https://aadityc91.github.io/assets/profile.jpg",
+      "inLanguage": "en",
+      "author": {
+        "@type": "Person",
+        "@id": "https://aadityc91.github.io/#person",
+        "name": "Aaditya Chauhan",
+        "url": "https://aadityc91.github.io/"
+      },
+      "publisher": { "@id": "https://aadityc91.github.io/#person" },
+      "about": ["Hybrid Retrieval", "Reciprocal Rank Fusion", "Retrieval-Augmented Generation", "Information Retrieval Evaluation"],
+      "citation": "https://doi.org/10.1109/ACCESS.2026.3743502"
+    }
+    </script>
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('theme');
+                document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+
+<body class="bg-global-bg text-global-text antialiased">
+    <header id="main-header" class="group">
+        <div class="header-grid">
+            <a href="/" class="group header-logo flex items-center" style="font-size: 2rem; text-decoration: none;" aria-label="Home">
+                👨‍💻
+            </a>
+
+            <div class="header-title">
+                <a href="/" class="text-xl font-bold sm:text-2xl" style="color: inherit; text-decoration: none;">Aaditya Chauhan</a>
+            </div>
+
+            <nav class="mobile-nav-menu header-nav sm:flex sm:flex-row sm:items-center" id="navigation-menu">
+                <a href="/#about">About</a>
+                <a href="/#papers">Papers</a>
+                <a href="/#talks">Talks</a>
+                <a href="/#writing" class="active">Writing</a>
+                <a href="/#resume">Résumé</a>
+            </nav>
+
+            <div class="header-controls flex items-center gap-3">
+                <button id="theme-toggle"
+                    class="flex h-7 w-7 items-center justify-center rounded-md border border-accent-2/20 bg-accent-2/10 p-1 transition-colors hover:bg-accent-2/20"
+                    aria-label="Switch to dark theme">
+                    <svg class="sun-icon h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <svg class="moon-icon h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+
+                <button id="toggle-navigation-menu"
+                    class="flex h-7 w-7 items-center justify-center rounded-md border border-accent-2/20 bg-accent-2/10 p-1 transition-colors hover:bg-accent-2/20 sm:hidden"
+                    aria-expanded="false" aria-label="Toggle navigation menu">
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-3xl px-4 sm:px-8">
+        <article class="post prose">
+            <h1 class="post-title">The Fusion Tax: When Hybrid Search Hurts</h1>
+            <p class="post-dek">Hybrid retrieval wins on average, and the average hides the queries it makes worse.
+                What Arun Agarwal and I measured across seven corpora and five encoders, and how to decide whether to
+                fuse.</p>
+            <p class="post-byline">Aaditya Chauhan · October 2026 · about 15 minutes, plus time to play with the figures</p>
+
+            <div class="tldr">
+                <div class="tldr-label">TL;DR</div>
+                <ul>
+                    <li>Fusing BM25 with dense retrieval beat dense search alone on average on all seven corpora we
+                        tested. It still ranked relevant documents below dense-only on 8–21% of queries, and below the
+                        better of its own two inputs on 13–48%.</li>
+                    <li>RRF, the fusion most search stacks recommend, is the weaker choice when one retriever is clearly
+                        stronger. There, a dense-weighted score blend wins. RRF earns its place when the two retrievers
+                        are evenly matched.</li>
+                    <li>A bigger or newer encoder doesn't make the tax go away, and cheap per-query routing doesn't
+                        transfer across corpora. What sets the tax is the balance between your two retrievers.</li>
+                    <li>Measure that balance on a few hundred labeled queries from your own traffic, pick the fusion
+                        method from it, and keep dense-only on the table.</li>
+                </ul>
+            </div>
+
+            <p>Ask how to build retrieval for a RAG system and you'll be told to go hybrid: run BM25 and a vector
+                search, then fuse the two lists. At the time of writing that's the recommended setup in Elasticsearch,
+                Azure AI Search and LangChain, and reciprocal rank fusion (RRF) is the fusion they recommend or ship
+                as the only option. The advice rests on averages. Over a set of queries, the fused list usually beats
+                either input.</p>
+
+            <p>Averages are where per-query losses hide. A system can get better on average while getting worse on one
+                query in five, and the person who asked that query never sees your average. So Arun Agarwal and I asked
+                a narrower question in <a href="https://doi.org/10.1109/ACCESS.2026.3743502">The Fusion Tax</a>, our
+                paper in IEEE Access: on a given query, how often does fusion rank relevant documents below the better
+                of its own two inputs, and below the single retriever you'd otherwise deploy? We treated “don't fuse” as
+                a real option, not a baseline to beat.</p>
+
+            <p>This post is the practitioner's version: what we found, what I'd do differently because of it, and six
+                figures to play with. The figures run on the paper's actual per-query results, not a simulation.</p>
+
+            <nav class="toc" aria-label="In this post">
+                <strong>In this post</strong>
+                <ol>
+                    <li><a href="#one-query">One query, three rankings</a></li>
+                    <li><a href="#what-we-measured">What we measured</a></li>
+                    <li><a href="#per-query">The tax, query by query</a></li>
+                    <li><a href="#ledger">Fusion wins on average and still costs you</a></li>
+                    <li><a href="#rrf">RRF is not a safe default</a></li>
+                    <li><a href="#weight">Turning the weight</a></li>
+                    <li><a href="#encoders">A bigger encoder won't fix it</a></li>
+                    <li><a href="#routing">Can you route around it?</a></li>
+                    <li><a href="#reranker">Does a reranker pay the tax?</a></li>
+                    <li><a href="#decide">Deciding for your corpus</a></li>
+                </ol>
+            </nav>
+
+            <h2 id="one-query">One query, three rankings</h2>
+
+            <p>Start with one real query from SciFact, a benchmark of scientific claims: “Silencing of Bcl2 is
+                important for the maintenance and progression of tumors.” Dense retrieval ranks the one relevant
+                abstract first. BM25 ranks it 29th. Watch what each fusion method does with that disagreement, then try
+                the other two queries.</p>
+
+            <figure class="fig" id="fig-example">
+                <div class="fig-card">
+                    <p class="fig-fallback">For the SciFact claim “Silencing of Bcl2 is important for the maintenance
+                        and progression of tumors,” dense retrieval ranks the relevant abstract first and BM25 ranks it
+                        29th. Weighted score fusion (dense weight 0.7) keeps it first; RRF drops it to fourth. For a
+                        claim where BM25 ranks the relevant abstract first and dense ranks it 22nd, the 0.7 weight drops
+                        it to fifth instead. This figure needs JavaScript to compute the fused rankings.</p>
+                </div>
+                <figcaption><strong>Figure 1.</strong> Three real SciFact queries, each with its BM25 and dense
+                    (BGE-small) top five and the fused list. The relevant abstract is marked. Fusion is computed live
+                    with the paper's formulas: RRF with k&nbsp;=&nbsp;60, and min–max normalized score interpolation
+                    with dense weight α.</figcaption>
+            </figure>
+
+            <p><span class="lead-in">RRF only sees ranks.</span> It gives each document 1/(60&nbsp;+&nbsp;rank) from
+                each list and adds them up. A document that dense ranks first and BM25 ranks 29th gets 1/61 + 1/89,
+                and a document both lists put somewhere in their top ten can beat that. RRF can't tell that dense was
+                confident and BM25 was guessing.</p>
+
+            <p><span class="lead-in">Weighted fusion sees scores.</span> It rescales each list's scores to 0–1 and
+                blends them, here with dense weighted 0.7. Dense's confident first place survives.</p>
+
+            <p><span class="lead-in">But a weight is a bet on one side.</span> In the second query, BM25 ranks the
+                relevant abstract first and dense ranks it 22nd. Now the 0.7 weight pushes the document BM25 had right
+                down to fifth.
+                The third query is the case fusion is built for: both lists have the relevant abstract partway down,
+                and their agreement lifts it above where either had it.</p>
+
+            <h2 id="what-we-measured">What we measured</h2>
+
+            <p>Seven BEIR corpora: SciFact (scientific claims), FiQA (financial questions), NFCorpus (medical), ArguAna
+                (counter-arguments), SciDocs (citation prediction), TREC-COVID (50 COVID questions) and Quora
+                (duplicate questions). The sparse side is the standard Anserini BM25, which reproduces the published
+                BEIR numbers to four decimals. The dense side is five encoders from 22M to 596M parameters across three
+                model generations: MiniLM, BGE-small, BGE-base, BGE-large, and Qwen3-Embedding from 2025. The detailed
+                per-query analysis uses BGE-small. We tried three fusion methods: RRF (k&nbsp;=&nbsp;60), min–max
+                normalized score interpolation with a dense weight of 0.7 unless stated, and CombMNZ. The metric is
+                nDCG@10.</p>
+
+            <p><span class="lead-in">There are two ways to count a loss.</span> The <em>oracle tax</em> is the share of
+                queries on which fusion scores below the better of BM25 and dense for that query. It's an upper bound,
+                because collecting it would mean knowing in advance which retriever wins each query. The
+                <em>deployable tax</em> is the share on which fusion scores below dense-only, the single retriever you'd
+                ship instead (dense was the stronger one on every corpus). That's the harm a team that simply chose
+                dense search would have avoided. We always report it next to the share of queries fusion helped,
+                because harm without benefit is half a ledger.</p>
+
+            <h2 id="per-query">The tax, query by query</h2>
+
+            <p>Figure 2 puts every query on one chart: BM25's nDCG@10 across, dense's up. Queries in the strip along
+                the left edge are ones BM25 missed entirely, and queries along the bottom are ones dense missed. Each
+                dot is colored by what fusion did to it.</p>
+
+            <figure class="fig" id="fig-scatter">
+                <div class="fig-card">
+                    <p class="fig-fallback">On SciFact with BGE-small, weighted fusion scores below the better of BM25
+                        and dense on 20% of queries and below dense-only on 10%, while helping 14.7% against
+                        dense-only. Hurt queries concentrate where one retriever found the answer and the other didn't.
+                        This figure needs JavaScript to load the per-query results.</p>
+                </div>
+                <figcaption><strong>Figure 2.</strong> Each dot is one query: its BM25 nDCG@10 (across) and its dense
+                    nDCG@10 (up), with BGE-small. The strips along the left and bottom hold queries one retriever missed
+                    completely. Color shows whether fusion scored the query below (hurt) or above (helped) the chosen
+                    reference. Dots are jittered slightly because nDCG@10 takes few distinct values. Hover a dot to see
+                    the query.</figcaption>
+            </figure>
+
+            <p><span class="lead-in">Harm concentrates where the retrievers disagree.</span> On queries only one
+                retriever finds, fusion mixes in the other retriever's noise. With the 0.7 dense weight, fusion hurts
+                87–95% of the queries only BM25 found, and 38–65% of the queries only dense found. These queries are a
+                minority, at most 29% of any corpus.</p>
+
+            <p><span class="lead-in">Most of the tax is in plain sight anyway.</span> Queries both retrievers find are
+                the large majority, and fusion reorders them in both directions. That group holds 38–72% of all the
+                hurt queries, so fixing only the disagreements would leave most of the tax in place.</p>
+
+            <p><span class="lead-in">Dense rarely misses what BM25 finds.</span> Queries only BM25 covers never exceed
+                7% of a corpus. That asymmetry is part of why a dense-heavy weight wins on average: it gives up the
+                small BM25-only group to protect everything else.</p>
+
+            <h2 id="ledger">Fusion wins on average and still costs you</h2>
+
+            <p>Figure 3 is the ledger for every corpus: how many queries fusion hurt and helped, by how much, and the
+                net.</p>
+
+            <figure class="fig" id="fig-ledger">
+                <div class="fig-card">
+                    <p class="fig-fallback">Against dense-only, weighted fusion hurts 8–21% of queries and helps 12–72%,
+                        for a net gain of 0.008 to 0.051 nDCG@10 on every corpus. RRF hurts 15–33% of queries and its
+                        net change against dense-only is negative on five of seven corpora.</p>
+                </div>
+                <figcaption><strong>Figure 3.</strong> Harm and benefit of fusion on each corpus (BGE-small). Bars show
+                    the share of queries fusion scored below (left) and above (right) the reference; hover or focus a
+                    row for the average size of each move. Net is the change in mean nDCG@10.</figcaption>
+            </figure>
+
+            <p><span class="lead-in">Against dense-only, weighted fusion is a good trade on average.</span> It helps
+                12–72% of queries and hurts 8–21%. On every corpus the average gain on a helped query matches or beats
+                the average loss on a hurt one, so the net is positive everywhere, by 0.008 to 0.051 nDCG@10.</p>
+
+            <p><span class="lead-in">But the losses aren't rounding errors.</span> A hurt query loses 0.04–0.21 nDCG@10
+                on average, the same order as the gains. Against the better of the two retrievers, 13–48% of queries
+                pay. Counting only material losses, above 0.05, it's still 10–34%.</p>
+
+            <p><span class="lead-in">RRF's ledger is worse.</span> It hurts 15–33% of queries against dense-only, and
+                its net is negative on five of the seven corpora. It comes out ahead only on NFCorpus and TREC-COVID,
+                the two corpora where BM25 and dense are about equally good.</p>
+
+            <p><span class="lead-in">Under loss-averse scoring, the downside is significant.</span> Risk-sensitive
+                evaluation (TRisk) counts a loss more heavily than a gain of the same size. With losses weighted six
+                times as heavily, interpolation is significantly riskier than dense-only on six of the seven corpora,
+                even though it wins on the mean.</p>
+
+            <p><span class="lead-in">It's mostly a ranking problem, not a recall problem.</span> Fusion's recall@10
+                matches or beats dense-only's on every corpus, and recall drops on only 1–7% of queries. For most hurt
+                queries the relevant documents are still in the top ten, just lower. That matters if whatever consumes
+                the list cares about order: a reranker with a small budget, a UI that shows three results, a reader
+                that leans on the first passage. It isn't all reordering, though. Of the queries fusion hurts, 10–43%
+                also lose a relevant document from the top ten, and 77 queries across the seven corpora lose every
+                one.</p>
+
+            <p class="rec"><span class="lead-in">My recommendation:</span> report fusion as a ledger, not an average:
+                the share of queries helped, the share hurt and the mean size of each, against the single retriever
+                you'd otherwise ship. If you add only one line to your evaluation dashboard, make it the share of
+                queries where hybrid ranks below dense-only.</p>
+
+            <h2 id="rrf">RRF is not a safe default</h2>
+
+            <p>RRF is popular for a good reason. It needs no score calibration, and BM25 scores and cosine similarities
+                live on scales that don't compare. But on the five corpora where dense was clearly stronger, leading by
+                about 0.04–0.18 nDCG@10, dense-weighted interpolation beat RRF in aggregate, significantly on four. RRF
+                also trailed plain dense search on all five.</p>
+
+            <p><span class="lead-in">Two things hold RRF back there.</span> It weights both lists equally, and it throws
+                away the scores, so a confident first place counts the same as a lucky one. A weighted RRF with the
+                same 0.7/0.3 split closes 25–73% of the gap to interpolation, so each explains roughly half.</p>
+
+            <p><span class="lead-in">Where the two retrievers are balanced, RRF wins.</span> On TREC-COVID (BM25 0.656,
+                dense 0.666), RRF and CombMNZ scored 0.801 and 0.805 against 0.717 for dense-heavy interpolation, and
+                helped 70–74% of queries. On NFCorpus (0.325 against 0.337) the three methods tie within 0.003. The
+                metasearch literature predicted this split long ago: blend scores when one side is reliably stronger and
+                its confidence is worth keeping, and fuse ranks when neither side should dominate. The engines disagree
+                too. Elasticsearch recommends RRF, OpenSearch defaults to min–max score blending, and Weaviate switched
+                its default from rank fusion to score fusion in version 1.24.</p>
+
+            <p class="rec"><span class="lead-in">My recommendation:</span> don't take your engine's fusion default on
+                faith. If dense leads by a clear margin on your data, use a dense-weighted score blend. If the two are
+                neck and neck, RRF is a good choice.</p>
+
+            <h2 id="weight">Turning the weight</h2>
+
+            <p>If you blend scores, you have to pick the weight. Figure 4 sweeps it from all BM25 to all dense.</p>
+
+            <figure class="fig" id="fig-alpha">
+                <div class="fig-card">
+                    <p class="fig-fallback">On every corpus the best mean nDCG@10 comes from a weight between 0.5 and
+                        0.8, never from dense alone. On TREC-COVID, moving the dense weight from 0.7 to 0.5 raises mean
+                        nDCG@10 from 0.717 to 0.748 and raises the share of queries below dense-only from 14% to
+                        26%.</p>
+                </div>
+                <figcaption><strong>Figure 4.</strong> Mean nDCG@10 (left) and the share of queries scored below
+                    dense-only (right) as the dense weight α moves from 0 (BM25 only) to 1 (dense only), with
+                    BGE-small. The dashed line marks RRF.</figcaption>
+            </figure>
+
+            <p><span class="lead-in">The best weight is in the middle, and it travels.</span> The in-sample optimum was
+                0.7 on four corpora, 0.6 on NFCorpus, 0.8 on ArguAna and 0.5 on TREC-COVID, and never 1.0: some
+                blending always beat dense alone on the mean. Choosing the weight on six corpora and applying it to
+                the seventh picked 0.6 or 0.7 every time, at a cost of at most 0.014 nDCG@10 against the in-sample
+                best on every corpus but TREC-COVID (0.031).</p>
+
+            <p><span class="lead-in">The best average isn't the safest weight.</span> TREC-COVID shows the trade.
+                Moving from 0.7 to 0.5 raises its mean nDCG@10 from 0.717 to 0.748, and raises the share of queries
+                that land below dense-only from 14% to 26%. Which you want depends on whether your users feel the
+                average or the worst case.</p>
+
+            <p class="rec"><span class="lead-in">My recommendation:</span> if dense leads, start at a dense weight of
+                0.6–0.7, set the final value by cross-validation on your labeled queries, and measure the tax on
+                queries you didn't tune on.</p>
+
+            <h2 id="encoders">A bigger encoder won't fix it</h2>
+
+            <p>The obvious objection is that the tax is a symptom of weak embeddings. So we scaled the dense side:
+                BGE-small, BGE-base and BGE-large (33M to 335M parameters, one family), plus MiniLM (22M, from 2021)
+                and Qwen3-Embedding (596M, from 2025). Step through them in Figure 5.</p>
+
+            <figure class="fig" id="fig-ladder">
+                <div class="fig-card">
+                    <p class="fig-fallback">Across five encoders from 22M to 596M parameters, dense and fused nDCG@10
+                        rise, but the share of queries fusion hurts stays in the same range: at BGE-large, interpolation
+                        still hurts 17–40% of queries on six corpora, and with Qwen3-Embedding it hurts 14–43%.</p>
+                </div>
+                <figcaption><strong>Figure 5.</strong> nDCG@10 of dense-only and fused retrieval (left) and the oracle
+                    fusion tax (right) on each corpus as the dense encoder changes. Ticks on each bar mark the tax with
+                    the other four encoders.</figcaption>
+            </figure>
+
+            <p><span class="lead-in">Better encoders raise the scores, not the floor.</span> Across the BGE family's
+                tenfold increase in parameters, the interpolation tax on SciFact, FiQA, NFCorpus and ArguAna moves by at
+                most four points, while nDCG@10 climbs. At BGE-large, interpolation still hurts 17–40% of queries on six corpora. Qwen3-Embedding, the
+                newest and largest model, pays 14–43%, a range that overlaps every older and smaller model's. Where its
+                tax differs, it follows the balance between the two retrievers rather than the encoder's quality: it's
+                highest on NFCorpus, where Qwen3 barely leads BM25, and lowest on TREC-COVID and Quora, where it leads
+                by a lot. Fusion still beat dense-only on average on 33 of the 35 encoder–corpus pairs.</p>
+
+            <p><span class="lead-in">A better BM25 doesn't fix it either.</span> Swapping BM25 for SPLADE, a stronger
+                learned-sparse retriever, left interpolation's tax at 14–41% on six corpora and 60% on TREC-COVID. That
+                tax comes with score blending itself. RRF's tax does respond to the quality of the lexical side, which
+                fits a method that can't tell a weak list's confident-looking ranks from a strong one's, but with
+                SPLADE RRF still hurt 19–46% of queries.</p>
+
+            <p class="rec"><span class="lead-in">My recommendation:</span> when you upgrade the embedding model,
+                re-measure the balance. A new encoder changes which fusion method and weight you should use, not
+                whether the tax exists.</p>
+
+            <h2 id="routing">Can you route around it?</h2>
+
+            <p>If fusion fails on predictable queries, you could fuse only when it helps. A perfect per-query router
+                would gain 0.02–0.05 nDCG@10 over static fusion on every corpus, so the prize is real. We tried to
+                collect it with 17 cheap features per query (query length, term rarity, score margins, overlap between
+                the two lists, and classic query-performance predictors such as NQC and WIG) feeding a gradient-boosted
+                classifier.</p>
+
+            <p><span class="lead-in">Within a corpus, failure is weakly predictable.</span> The mean held-out AUC was
+                0.63, up to 0.80 on Quora. <span class="lead-in">Across corpora, it isn't reliably.</span> Trained on
+                six corpora and tested on the seventh, AUC averaged 0.59 and ranged from chance (0.49 on NFCorpus) to
+                0.74. A router that switched queries to dense-only never beat static interpolation on a held-out
+                corpus. On three corpora it routed nothing, and on the two where it routed a large share of queries it
+                lost a little.</p>
+
+            <p><span class="lead-in">The signals change meaning from corpus to corpus.</span> The dense retriever's
+                top-1 margin is the clearest case. Where dense dominates, a confident dense top hit means fusion can
+                only dilute it, so the query is safe. On TREC-COVID, where BM25 is as strong as dense, the same
+                confident hit predicts a failure, because the dense-heavy weight throws away BM25's evidence. Eleven of
+                the 17 features point toward failure on some corpus and away from it on another. A router trained on
+                one balance learns the wrong lesson for the next.</p>
+
+            <p class="rec"><span class="lead-in">My recommendation:</span> pick one fusion policy per corpus. If you
+                want per-query routing, validate it on a corpus it wasn't trained on before you trust it.</p>
+
+            <h2 id="reranker">Does a reranker pay the tax?</h2>
+
+            <p>Most production stacks put a cross-encoder after retrieval, so maybe first-stage order doesn't matter.
+                We reranked the top 30 candidates from each method with BGE-reranker-v2-m3.</p>
+
+            <p><span class="lead-in">It helps only where the reranker is good at the corpus.</span> On the three
+                corpora where it improved every method (SciFact, FiQA and TREC-COVID), the share of queries where
+                fusion finished below dense-only fell by a third on SciFact and not at all on the other two. Even there
+                it mostly reshuffled who pays: on FiQA it repaired 75 of 95 hurt queries and newly hurt 81 others. On
+                ArguAna and SciDocs the reranker made every method worse, and the tax “disappeared” only because every
+                list converged on the reranker's own ordering.</p>
+
+            <p><span class="lead-in">After a good reranker, the second retriever adds little.</span> Once reranked,
+                interpolated candidates scored within 0.011 nDCG@10 of dense-only candidates on six corpora, with the
+                balanced TREC-COVID the exception. The costs are lopsided. On one consumer machine (an Apple M5), a
+                BM25 query took 1.1–4.3&nbsp;ms, while the cross-encoder took about 1.6&nbsp;s per query for 30
+                candidates. BM25 is the cheap lever and the reranker the expensive one. These are results for one
+                reranker at one depth, so treat them as a measurement, not a ceiling.</p>
+
+            <p class="rec"><span class="lead-in">My recommendation:</span> if you already run a reliable reranker,
+                spend your effort validating it on each corpus rather than tuning fusion. If you can't afford a
+                reranker, fusion with a weight set from your corpus's balance is the cheap win.</p>
+
+            <h2 id="decide">Deciding for your corpus</h2>
+
+            <p>Here is the paper's guidance as a calculator. Enter what you measured on your own labeled sample, or
+                start from one of the seven corpora.</p>
+
+            <figure class="fig" id="fig-decide">
+                <div class="fig-card">
+                    <p class="fig-fallback">If dense leads BM25 by 0.04 nDCG@10 or more on your labeled sample, use
+                        dense-weighted interpolation with a weight of about 0.6–0.7. If the two are within about 0.01,
+                        use RRF, CombMNZ or interpolation near 0.5. The 95% confidence interval on the gap is about
+                        1.96·s/√n.</p>
+                </div>
+                <figcaption><strong>Figure 6.</strong> A starting fusion policy from your measured sparse–dense
+                    balance. The interval is the approximate 95% confidence interval on the dense-minus-BM25 gap,
+                    1.96·s/√n, where s is the standard deviation of the per-query differences. The thresholds come from
+                    the paper's seven corpora, so treat the result as a starting point to measure against.</figcaption>
+            </figure>
+
+            <ol>
+                <li><strong>Measure the balance first.</strong> Sample 200–400 real queries, stratified across your
+                    traffic, and judge at least the pooled top ten of both retrievers. Compare BM25 and dense nDCG@10
+                    per query. In our data the per-query differences had standard deviations of 0.17–0.36, which puts
+                    the 95% interval on the gap at about ±0.02–0.05 with 200 queries.</li>
+                <li><strong>Pick the method from the balance.</strong> If dense leads clearly (by 0.04 or more in our
+                    data, against about 0.01 on the balanced corpora), use dense-weighted interpolation at 0.6–0.7,
+                    set by cross-validation. If they're balanced, use RRF, CombMNZ or interpolation near 0.5.</li>
+                <li><strong>Keep dense-only on the table.</strong> Fusion's edge over dense-only was 0.008–0.051
+                    nDCG@10, while 8–21% of queries lost 0.04–0.21. If your consumer is rank-sensitive and you care
+                    about the worst case, dense-only may be the better product.</li>
+                <li><strong>Don't expect a new encoder to settle it.</strong> Re-measure the balance whenever you
+                    change the encoder or the corpus shifts.</li>
+                <li><strong>Budget the second retriever against the reranker.</strong> BM25 costs milliseconds per
+                    query; a cross-encoder costs a second or more.</li>
+            </ol>
+
+            <h2 id="closing">Closing thoughts</h2>
+
+            <p>Hybrid retrieval isn't wrong. On average it won on every corpus we tested. But an average is a sum of
+                wins and losses, and the losses land on specific queries and the people who asked them. Count both
+                sides, choose the fusion method from your corpus's balance, and give dense-only a fair hearing.</p>
+
+            <p><span class="lead-in">What this doesn't cover.</span> We measured first-stage retrieval and one
+                reranking stage, not generated answers, so how much of the tax reaches a RAG answer depends on how
+                rank-sensitive your reader is. The reranking results are for one cross-encoder at depth 30. TREC-COVID
+                has only 50 queries, so its numbers are noisy, and the multi-million-document BEIR corpora were left
+                out to keep everything runnable on a CPU.</p>
+
+            <h2 id="references">References and further reading</h2>
+
+            <ul class="refs">
+                <li>A. Chauhan and A. Agarwal, “The Fusion Tax: A Diagnostic Analysis of When Hybrid Retrieval Hurts,”
+                    <em>IEEE Access</em>, vol. 14, 2026. <a href="https://doi.org/10.1109/ACCESS.2026.3743502">doi:10.1109/ACCESS.2026.3743502</a></li>
+                <li>Code, per-query runs and a step-by-step reproduction guide for every number in the paper: <a
+                        href="https://doi.org/10.5281/zenodo.22298900">doi:10.5281/zenodo.22298900</a></li>
+                <li>G. V. Cormack, C. L. A. Clarke and S. Büttcher, “Reciprocal Rank Fusion Outperforms Condorcet and
+                    Individual Rank Learning Methods,” <em>SIGIR 2009</em>. <a
+                        href="https://doi.org/10.1145/1571941.1572114">doi:10.1145/1571941.1572114</a></li>
+                <li>S. Bruch, S. Gai and A. Ingber, “An Analysis of Fusion Functions for Hybrid Retrieval,” <em>ACM
+                        Transactions on Information Systems</em>, 2024. <a
+                        href="https://doi.org/10.1145/3596512">doi:10.1145/3596512</a></li>
+                <li>R. Benham and J. S. Culpepper, “Risk-Reward Trade-offs in Rank Fusion,” <em>ADCS 2017</em>. <a
+                        href="https://doi.org/10.1145/3166072.3166084">doi:10.1145/3166072.3166084</a></li>
+                <li>B. T. Dinçer, C. Macdonald and I. Ounis, “Hypothesis Testing for the Risk-Sensitive Evaluation of
+                    Retrieval Systems,” <em>SIGIR 2014</em>. <a
+                        href="https://doi.org/10.1145/2600428.2609625">doi:10.1145/2600428.2609625</a></li>
+                <li>N. Thakur et al., “BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information
+                    Retrieval Models,” <em>NeurIPS Datasets and Benchmarks</em>, 2021. <a
+                        href="https://arxiv.org/abs/2104.08663">arXiv:2104.08663</a></li>
+                <li>T. Formal, C. Lassance, B. Piwowarski and S. Clinchant, “From Distillation to Hard Negative
+                    Sampling: Making Sparse Neural IR Models More Effective,” <em>SIGIR 2022</em>. <a
+                        href="https://doi.org/10.1145/3477495.3531857">doi:10.1145/3477495.3531857</a></li>
+                <li>Fusion defaults, as documented in September 2026: <a
+                        href="https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion">Elasticsearch</a>,
+                    <a href="https://docs.opensearch.org/latest/vector-search/ai-search/hybrid-search/">OpenSearch</a>,
+                    <a href="https://docs.weaviate.io/weaviate/search/hybrid">Weaviate</a>.</li>
+                <li><a href="https://www.infoq.com/articles/vector-search-hybrid-retrieval-rag/">Why Vector Search Alone
+                        Isn't Enough: Hybrid Retrieval for RAG</a>, InfoQ, 2026.</li>
+            </ul>
+
+            <p class="figure-note">About the figures: every number comes from the paper's stored runs. Figure 1
+                recomputes fusion in your browser for three SciFact queries from the stored BM25 and dense scores.
+                Figures 2–4 use BGE-small, Figure 5 all five encoders, and Figure 6 is arithmetic.</p>
+
+            <p><a href="/#writing">← More writing</a></p>
+        </article>
+    </main>
+
+    <div class="mx-auto max-w-3xl px-4 sm:px-8 py-8 text-center text-sm opacity-75">
+        <p>&copy; 2026 Aaditya Chauhan.</p>
+    </div>
+
+    <script src="post.js"></script>
+    <script src="fusion-data.js"></script>
+    <script src="fig-example.js"></script>
+    <script src="fig-scatter.js"></script>
+    <script src="fig-ledger.js"></script>
+    <script src="fig-alpha.js"></script>
+    <script src="fig-ladder.js"></script>
+    <script src="fig-decide.js"></script>
+</body>
+
+</html>
