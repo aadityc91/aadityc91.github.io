@@ -13,7 +13,6 @@
   </p>
   <div style="margin-top:0.4rem;">
     <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" style="background:var(--color-accent); color:var(--color-global-bg); padding:2px 8px; border-radius:4px; font-size:0.72rem; font-weight:bold; text-decoration:none;">Open Access (CC BY 4.0)</a>
-    <a href="https://aadityc91.github.io/writing/the-fusion-tax/" class="cactus-link" style="font-size:0.85rem; margin-left:0.6rem;">Interactive write-up →</a>
   </div>
   <details class="abstract-block">
     <summary>Abstract</summary>
